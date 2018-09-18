@@ -14,6 +14,10 @@ class EchoServerResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'online_connections' => $this->subscription_count,
+            'uptime' => round($this->uptime/60/60/24, 2),
+            'memory_usage' => rssForHumans($this->memory_usage->rss)
+        ];
     }
 }

@@ -14,6 +14,11 @@ class AnnouncementResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'activity_until' => $this->active_until,
+            'content' => $this->body,
+            'created_at' => optional($this->created_at)->toDateTimeString(),
+        ];
     }
 }

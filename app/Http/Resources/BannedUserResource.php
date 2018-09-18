@@ -14,6 +14,14 @@ class BannedUserResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id'    => $this->id,
+            'channel_name'      => $this->channel,
+            'description'       => $this->description,
+            'user_id'           => $this->user_id,
+            'unban_at'          => optional($this->unban_at)->toDateTimeString(),
+            'created_at'        => optional($this->created_at)->toDateTimeString(),
+            'user'              => new UserResource($this->user)
+        ];
     }
 }

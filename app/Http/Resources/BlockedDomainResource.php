@@ -14,6 +14,12 @@ class BlockedDomainResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id'        => $this->id,
+            'channel_name'      => $this->channel,
+            'description'       => $this->description,
+            'domain'            => $this->domain,
+            'created_at'        => optional($this->created_at)->toDateTimeString()
+        ];
     }
 }

@@ -14,6 +14,12 @@ class SuggestedChannelResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'z_index' => $this->z_index,
+            'group' => $this->group ?? null,
+
+            'channel' => new ChannelResource($this->channel)
+        ];
     }
 }

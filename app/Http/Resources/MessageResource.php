@@ -14,6 +14,14 @@ class MessageResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id'         => $this->id,
+            'user_id'    => $this->user_id,
+            'created_at' => optional($this->created_at)->toDateTimeString(),
+            'read_at'    => optional($this->read_at)->toDateTimeString(),
+            'content'    => $this->data,
+
+            'author' => new UserResource($this->owner),
+        ];
     }
 }

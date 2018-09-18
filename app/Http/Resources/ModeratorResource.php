@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ModeratorResource extends JsonResource
@@ -14,6 +15,12 @@ class ModeratorResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'user' => new UserResource(
+                User::find($this->id)
+            ),
+
+            'role' => $this->pivot->role,
+        ];
     }
 }

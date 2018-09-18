@@ -14,6 +14,12 @@ class RuleResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id'         => $this->id,
+            'body'       => $this->title,
+            'channel_id' => $this->channel_id,
+            'created_at' => optional($this->created_at)->toDateTimeString(),
+            'updated_at' => optional($this->updated_at)->toDateTimeString(),
+        ];
     }
 }
